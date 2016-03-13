@@ -47,7 +47,8 @@ def bsize():
 
 def time():
   time = str(datetime.datetime.now())[:19]
-  return time
+  zone = subprocess.Popen((['date', '+%Z %z']), stdout=subprocess.PIPE).stdout.read().rstrip("\n")
+  return time + " " + zone
 
 def main():
   backup()
